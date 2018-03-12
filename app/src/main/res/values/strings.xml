@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">斯米聊</string>
+    <string name="title_my">我的</string>
+    <string name="title_murmur">私语</string>
+    <string name="title_whisper">心语</string>
+
+    <string-array name="murmur_titles">
+        <item>每天</item>
+        <item>未来</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_message"
+        android:icon="@drawable/ic_nav_message"
+        android:title="消息" />
+
+    <item
+        android:id="@+id/action_murmur"
+        android:icon="@drawable/ic_nav_murmur"
+        android:title="私语" />
+
+    <!--<item-->
+    <!--android:id="@+id/empty"-->
+    <!--android:enabled="false"-->
+    <!--android:title="" />-->
+
+    <item
+        android:id="@+id/action_whisper"
+        android:icon="@drawable/ic_nav_whisper"
+        android:title="心语" />
+
+    <item
+        android:id="@+id/action_my"
+        android:icon="@drawable/selector_btm_nav_my"
+        android:title="我的" />
+</menu>
