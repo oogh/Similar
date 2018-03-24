@@ -28,6 +28,8 @@ public class MyActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
+    private MyPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,14 @@ public class MyActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setupToolbar();
         setupDrawerLayout();
+
+        MyFragment myFragment = (MyFragment) getSupportFragmentManager().findFragmentById(R.id.fl_my_container);
+        if (myFragment == null) {
+            myFragment = MyFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), myFragment, R.id.fl_my_container);
+        }
+
+        mPresenter = new MyPresenter(myFragment);
     }
 
     private void setupToolbar() {

@@ -1,5 +1,6 @@
 package me.oogh.similar.message;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -55,8 +56,21 @@ public class MessageActivity extends AppCompatActivity {
     private void setupToolbar() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+        switchStatusDrawable(R.drawable.ic_status);
         mToolbar.setNavigationIcon(R.drawable.ic_menu);
         mToolbar.setNavigationOnClickListener(view -> mDrawerLayout.openDrawer(GravityCompat.START));
+    }
+
+    /**
+     * 状态图标的切换
+     *
+     * @param resId
+     */
+    private void switchStatusDrawable(int resId) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Drawable drawable = getResources().getDrawable(resId, null);
+            mTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        }
     }
 
     private void setupDrawerLayout() {

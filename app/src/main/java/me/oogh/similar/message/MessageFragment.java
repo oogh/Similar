@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +19,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.oogh.similar.R;
 import me.oogh.similar.adapter.MessageListAdapter;
-import me.oogh.similar.data.Message;
+import me.oogh.similar.data.entry.Message;
 
 /**
  * Created by oogh on 18-3-2.
  */
-
 public class MessageFragment extends Fragment implements MessageContract.View {
 
     private static final String TAG = MessageFragment.class.getSimpleName();
@@ -61,19 +58,19 @@ public class MessageFragment extends Fragment implements MessageContract.View {
         mUnbinder = ButterKnife.bind(this, rootView);
         mMessageView.setLayoutManager(new LinearLayoutManager(getContext()));
         mMessageView.setAdapter(mAdapter);
-        ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                Log.i(TAG, "onSwiped: Swiped");
-            }
-        };
-        ItemTouchHelper touchHelper = new ItemTouchHelper(swipeCallback);
-        touchHelper.attachToRecyclerView(mMessageView);
+//        ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+//            @Override
+//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+//                Log.i(TAG, "onSwiped: Swiped");
+//            }
+//        };
+//        ItemTouchHelper touchHelper = new ItemTouchHelper(swipeCallback);
+//        touchHelper.attachToRecyclerView(mMessageView);
         return rootView;
     }
 

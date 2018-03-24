@@ -1,4 +1,4 @@
-package me.oogh.similar.data.source;
+package me.oogh.similar.data.source.message;
 
 /**
  * Created by oogh on 18-3-4.

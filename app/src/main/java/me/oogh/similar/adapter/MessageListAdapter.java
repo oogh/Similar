@@ -13,7 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.oogh.similar.R;
-import me.oogh.similar.data.Message;
+import me.oogh.similar.data.entry.Message;
 
 /**
  * Created by oogh on 18-3-2.

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import me.oogh.similar.R;
-import me.oogh.similar.murmur.DailyFragmentSub;
+import me.oogh.similar.murmur.DailyFragment;
 import me.oogh.similar.murmur.FutureFragmentSub;
 
 /**
@@ -27,7 +27,7 @@ public class MurmurViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = DailyFragmentSub.newInstance();
+                fragment = DailyFragment.newInstance();
                 break;
             case 1:
                 fragment = FutureFragmentSub.newInstance();

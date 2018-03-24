@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".AppContext"
@@ -21,21 +22,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="Bmob_APP_KEY"
-            android:value="您自己的Bmob_APP_KEY" />
-
-        <activity android:name=".message.MessageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".my.MyActivity" />
-        <activity android:name=".murmur.MurmurActivity" />
-        <activity android:name=".whisper.WhisperActivity"></activity>
+            android:value="86ef5c79ef424d260c9ccbc6044c4a15" />
+        <meta-data
+            android:name="QQ_APP_ID"
+            android:value="tencent1106699661" />
 
         <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
             <intent-filter>
@@ -58,6 +50,44 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1106699661" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".signin.SigninActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".message.MessageActivity" />
+        <activity android:name=".my.MyActivity" />
+        <activity android:name=".murmur.MurmurActivity" />
+        <activity android:name=".whisper.WhisperActivity" />
+        <activity
+            android:name=".murmur.AddMurmurActivity"
+            android:theme="@style/AppTheme.Colored"></activity>
+        <activity
+            android:name=".murmur.EditMurmurActivity"
+            android:theme="@style/AppTheme.Colored"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
     </application>
 
 </manifest>

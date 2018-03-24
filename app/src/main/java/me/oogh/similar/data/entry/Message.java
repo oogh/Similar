@@ -1,4 +1,4 @@
-package me.oogh.similar.data;
+package me.oogh.similar.data.entry;
 
 /**
  * Created by oogh on 18-3-2.

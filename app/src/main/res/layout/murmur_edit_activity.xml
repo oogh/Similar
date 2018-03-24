@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="me.oogh.similar.murmur.EditMurmurActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_edit_murmur_today_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorSystemUI"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.Toolbar"
+        app:titleTextColor="@color/colorTitleText" />
+
+    <EditText
+        android:id="@+id/et_edit_murmur_today"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_edit_murmur_today_activity"
+        android:background="@null"
+        android:enabled="false"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="top|left"
+        android:imeActionLabel="DONE"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        android:scrollHorizontally="false"
+        android:scrollbars="vertical"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

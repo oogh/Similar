@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.oogh.similar.R;
+import me.oogh.similar.base.BaseActivity;
+import me.oogh.similar.data.source.murmur.MurmurLocalDataSource;
+import me.oogh.similar.data.source.murmur.MurmurRemoteDataSource;
+import me.oogh.similar.data.source.murmur.MurmurRepository;
 import me.oogh.similar.message.MessageActivity;
 import me.oogh.similar.my.MyActivity;
 import me.oogh.similar.utils.ActivityUtils;
 import me.oogh.similar.whisper.WhisperActivity;
 
-public class MurmurActivity extends AppCompatActivity {
+public class MurmurActivity extends BaseActivity {
+    private static final String TAG = MurmurActivity.class.getSimpleName();
 
     @BindView(R.id.tb_murmur_activity)
     Toolbar mToolbar;
@@ -42,7 +46,11 @@ public class MurmurActivity extends AppCompatActivity {
         }
 
         // 创建 Murmur Presenter
-        mPresenter = new MurmurPresenter(murmurFragment);
+        MurmurLocalDataSource local = new MurmurLocalDataSource(this);
+        MurmurRemoteDataSource remote = new MurmurRemoteDataSource();
+        mPresenter = new MurmurPresenter(
+                MurmurRepository.getInstance(local, remote),
+                murmurFragment);
     }
 
     private void setupToolbar() {

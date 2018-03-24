@@ -38,15 +38,6 @@
             app:tabSelectedTextColor="@color/colorWhite"
             app:tabTextColor="@color/colorGray">
 
-            <!--<android.support.design.widget.TabItem-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="每天" />-->
-
-            <!--<android.support.design.widget.TabItem-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="未来" />-->
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -57,6 +48,7 @@
         android:layout_below="@+id/abl_container" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_murmur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

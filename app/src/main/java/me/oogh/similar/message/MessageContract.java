@@ -4,7 +4,7 @@ import java.util.List;
 
 import me.oogh.similar.base.BasePresenter;
 import me.oogh.similar.base.BaseView;
-import me.oogh.similar.data.Message;
+import me.oogh.similar.data.entry.Message;
 
 /**
  * Created by oogh on 18-3-2.
