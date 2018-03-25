@@ -19,6 +19,11 @@ public class MurmurLocalDataSource implements IMurmurDataSource {
 
 
     @Override
+    public void removeMurmur(Murmur murmur) {
+        mDAO.deleteMurmur(murmur);
+    }
+
+    @Override
     public void saveMurmur(@NonNull Murmur murmur) {
         mDAO.insert(murmur);
     }

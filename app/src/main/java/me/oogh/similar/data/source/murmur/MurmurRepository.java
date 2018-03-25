@@ -30,6 +30,11 @@ public class MurmurRepository implements IMurmurDataSource {
     }
 
     @Override
+    public void removeMurmur(Murmur murmur) {
+        mLocalDataSource.removeMurmur(murmur);
+    }
+
+    @Override
     public void saveMurmur(@NonNull Murmur murmur) {
         mLocalDataSource.saveMurmur(murmur);
     }

@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
 import me.oogh.similar.data.entry.Murmur;
+import me.oogh.similar.data.entry.User;
 
 import static me.oogh.similar.data.source.murmur.MurmurDBContract.MurmurEntry.COLUMN_CONTENT;
 import static me.oogh.similar.data.source.murmur.MurmurDBContract.MurmurEntry.COLUMN_DATE;
@@ -89,8 +91,8 @@ public class MurmurDAO {
         ContentValues values = new ContentValues();
         values.put(COLUMN_CONTENT, murmur.getContent());
 
-        String whereClause = COLUMN_DATE + " = ?";
-        String[] whereArgs = {String.valueOf(murmur.getDate().getTime())};
+        String whereClause = COLUMN_USER_ID + " = ? and " + COLUMN_DATE + " = ?";
+        String[] whereArgs = {BmobUser.getCurrentUser(User.class).getObjectId(), String.valueOf(murmur.getDate().getTime())};
 
         return db.update(
                 TABLE_NAME,
@@ -101,4 +103,15 @@ public class MurmurDAO {
 
     }
 
+    /**
+     * 删除一条数据
+     *
+     * @param murmur
+     */
+    public int deleteMurmur(Murmur murmur) {
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+        String whereClause = COLUMN_USER_ID + "= ? and " + COLUMN_DATE + " = ?";
+        String[] whereArgs = {BmobUser.getCurrentUser(User.class).getObjectId(), murmur.getDate().getTime() + ""};
+        return db.delete(TABLE_NAME, whereClause, whereArgs);
+    }
 }

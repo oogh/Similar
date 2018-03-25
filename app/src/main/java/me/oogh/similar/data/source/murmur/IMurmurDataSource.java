@@ -11,6 +11,8 @@ import me.oogh.similar.data.entry.Murmur;
  */
 
 public interface IMurmurDataSource {
+    void removeMurmur(Murmur murmur);
+
     interface OnMurmurLoadedCallback {
         void onMurmurLoaded(List<Murmur> murmurs);
     }

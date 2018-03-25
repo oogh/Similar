@@ -47,12 +47,21 @@ public class MurmurPresenter implements MurmurContract.Presenter {
                     todayList.add(murmur);
                 }
             }
-            mMurmurView.showMurmurList(todayList);
+            if (todayList.size() == 0) {
+                mMurmurView.showEmpty();
+            } else {
+                mMurmurView.showMurmurList(todayList);
+            }
         });
     }
 
     @Override
     public void updateMurmur(Murmur murmur) {
         mRepository.updateMurmur(murmur);
+    }
+
+    @Override
+    public void removeMurmur(Murmur murmur) {
+        mRepository.removeMurmur(murmur);
     }
 }

@@ -10,6 +10,11 @@ import me.oogh.similar.data.entry.Murmur;
 
 public class MurmurRemoteDataSource implements IMurmurDataSource {
     @Override
+    public void removeMurmur(Murmur murmur) {
+
+    }
+
+    @Override
     public void saveMurmur(@NonNull Murmur murmur) {
 
     }

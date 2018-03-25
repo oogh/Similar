@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import me.oogh.similar.R;
-import me.oogh.similar.murmur.DailyFragment;
-import me.oogh.similar.murmur.FutureFragmentSub;
+import me.oogh.similar.murmur.TabDailyFragment;
+import me.oogh.similar.murmur.TabFutureFragment;
 
 /**
  * Created by oogh on 18-3-4.
@@ -27,10 +27,10 @@ public class MurmurViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = DailyFragment.newInstance();
+                fragment = TabDailyFragment.newInstance();
                 break;
             case 1:
-                fragment = FutureFragmentSub.newInstance();
+                fragment = TabFutureFragment.newInstance();
         }
         return fragment;
     }

@@ -14,4 +14,7 @@
     <string name="done">完成</string>
     <string name="edit">编辑</string>
     <string name="logout">退出登录</string>
+    <string name="delete">删除</string>
+    <string name="empty_murmur_title">一天一个胶囊</string>
+    <string name="empty_murmur_content">写给自己关于今天的故事今天过得怎么样</string>
 </resources>

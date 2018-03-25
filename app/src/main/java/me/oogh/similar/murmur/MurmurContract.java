@@ -13,6 +13,8 @@ import me.oogh.similar.data.entry.Murmur;
 public class MurmurContract {
     interface View extends BaseView<Presenter> {
 
+        void showEmpty();
+
         void showMurmurList(List<Murmur> murmurs);
 
     }
@@ -31,5 +33,7 @@ public class MurmurContract {
         void listMurmur(String userId);
 
         void updateMurmur(Murmur murmur);
+
+        void removeMurmur(Murmur murmur);
     }
 }

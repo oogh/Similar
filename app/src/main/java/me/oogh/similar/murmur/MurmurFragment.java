@@ -8,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,9 +170,17 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
      */
     @Subscribe(sticky = true)
     public void onSaveMurmur(Event.MurmurEvent event) {
-        Log.i(TAG, "onSaveMurmur: 执行了...");
         if (event.tag == Event.Tag.MURMUR_ADD_COMPLETED) {
             mPresenter.saveMurmur(event.murmur);
+            mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
+            EventBus.getDefault().removeStickyEvent(event);
+        }
+    }
+
+    @Subscribe
+    public void onRemoveMurmur(Event.MurmurEvent event) {
+        if (event.tag == Event.Tag.MURMUR_REMOVE) {
+            mPresenter.removeMurmur(event.murmur);
             mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
         }
     }
@@ -193,8 +200,13 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
     }
 
     @Override
+    public void showEmpty() {
+        EventBus.getDefault().postSticky(new Event.MurmurListEvent(null, Event.Tag.MURMUR_SHOW_EMPTY));
+    }
+
+    @Override
     public void showMurmurList(List<Murmur> murmurs) {
-        EventBus.getDefault().postSticky(new Event.MurmurListEvent(murmurs));
+        EventBus.getDefault().postSticky(new Event.MurmurListEvent(murmurs, Event.Tag.MURMUR_SHOW_LIST));
     }
 
 }

@@ -13,13 +13,13 @@ import me.oogh.similar.R;
  * Created by oogh on 18-3-4.
  */
 
-public class FutureFragmentSub extends Fragment {
-    public FutureFragmentSub() {
+public class TabFutureFragment extends Fragment {
+    public TabFutureFragment() {
 
     }
 
-    public static FutureFragmentSub newInstance() {
-        FutureFragmentSub fragment = new FutureFragmentSub();
+    public static TabFutureFragment newInstance() {
+        TabFutureFragment fragment = new TabFutureFragment();
         return fragment;
     }
 
