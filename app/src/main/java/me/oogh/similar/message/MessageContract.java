@@ -7,7 +7,9 @@ import me.oogh.similar.base.BaseView;
 import me.oogh.similar.data.entry.Message;
 
 /**
- * Created by oogh on 18-3-2.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-02
+ * @description
  */
 
 public class MessageContract {

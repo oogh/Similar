@@ -6,7 +6,9 @@ import android.support.annotation.NonNull;
 import me.oogh.similar.data.entry.Murmur;
 
 /**
- * Created by oogh on 18-3-19.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-19
+ * @description
  */
 
 public class MurmurLocalDataSource implements IMurmurDataSource {
@@ -16,7 +18,6 @@ public class MurmurLocalDataSource implements IMurmurDataSource {
     public MurmurLocalDataSource(Context context) {
         mDAO = new MurmurDAO(MurmurDBHelper.getInstance(context));
     }
-
 
     @Override
     public void removeMurmur(Murmur murmur) {

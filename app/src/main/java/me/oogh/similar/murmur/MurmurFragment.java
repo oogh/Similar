@@ -17,6 +17,7 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,14 +31,16 @@ import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.data.entry.User;
 
 /**
- * Created by oogh on 18-3-4.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-04
+ * @description
  */
 
 public class MurmurFragment extends Fragment implements MurmurContract.View {
     private static final String TAG = MurmurFragment.class.getSimpleName();
 
-    private static final String MURMUR_TAG_TODAY = "today";
-    private static final String MURMUR_TAG_FUTURE = "future";
+    private static final String MURMUR_TYPE_TODAY = "daily";
+    private static final String MURMUR_TYPE_FUTURE = "future";
     @BindView(R.id.vp_murmur)
     ViewPager mViewPager;
     private Unbinder mUnbinder;
@@ -53,7 +56,7 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
 
     private FloatingActionButton mFloatingActionView;
 
-    private MurmurDialog mDialog;
+    private DialogMurmurSelector mDialog;
 
 
     public MurmurFragment() {
@@ -92,7 +95,7 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
         ((TabLayout) getActivity().findViewById(R.id.tl_murmur)).setupWithViewPager(mViewPager);
         mFloatingActionView = getActivity().findViewById(R.id.fab_add_murmur);
         mFloatingActionView.setOnClickListener(view -> {
-            mDialog = MurmurDialog.newInstance("写给");
+            mDialog = DialogMurmurSelector.newInstance("写给");
             mDialog.addOnActionClickedListener((action, radio) -> {
                 switch (action.getId()) {
                     case R.id.btn_dialog_ok:
@@ -118,28 +121,39 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
     private void doOkClicked(RadioButton radio) {
         switch (radio.getId()) {
             case R.id.rb_dialog_today:
-                onAddClick("today");
+                onAddClick(MURMUR_TYPE_TODAY);
                 break;
             case R.id.rb_dialog_future:
-                onAddClick("future");
+                onAddClick(MURMUR_TYPE_FUTURE);
                 break;
             default:
                 break;
         }
     }
 
-    private void onAddClick(String tag) {
-        switch (tag) {
-            case MURMUR_TAG_TODAY:
-                startActivity(new Intent(getContext(), AddMurmurActivity.class));
-                break;
-            case MURMUR_TAG_FUTURE:
-                Toast.makeText(getContext(), "future", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
+    private void onAddClick(String type) {
+        Intent intent = new Intent(getContext(), AddMurmurActivity.class);
+        intent.putExtra("type", type);
+
+        if (MURMUR_TYPE_FUTURE.equals(type)) {
+            DialogDatePicker dialog = DialogDatePicker.newInstance();
+            dialog.setOnDateSetListener((date, valid) -> {
+                if (valid) {
+                    intent.putExtra("date", date.getTime());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "请选择未来的时间节点", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            });
+            mDialog.dismiss();
+            dialog.show(getFragmentManager(), "date_picker_dialog");
+        } else {
+            intent.putExtra("date", new Date().getTime());
+            startActivity(intent);
+            mDialog.dismiss();
         }
-        mDialog.dismiss();
+
     }
 
 
@@ -197,11 +211,6 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
             mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
             EventBus.getDefault().removeStickyEvent(event);
         }
-    }
-
-    @Override
-    public void showEmpty() {
-        EventBus.getDefault().postSticky(new Event.MurmurListEvent(null, Event.Tag.MURMUR_SHOW_EMPTY));
     }
 
     @Override

@@ -5,7 +5,9 @@ import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.BmobIMMessageHandler;
 
 /**
- * Created by oogh on 18-3-16.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-16
+ * @description
  */
 
 public class SimilarMessageHandler extends BmobIMMessageHandler {

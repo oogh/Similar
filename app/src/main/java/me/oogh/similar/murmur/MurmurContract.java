@@ -7,13 +7,31 @@ import me.oogh.similar.base.BaseView;
 import me.oogh.similar.data.entry.Murmur;
 
 /**
- * Created by oogh on 18-3-4.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-04
+ * @description
  */
 
 public class MurmurContract {
+
+    public enum Type {
+        DAILY("daily"),
+        FUTURE("future");
+
+        private String value;
+
+        Type(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+    }
+
     interface View extends BaseView<Presenter> {
 
-        void showEmpty();
+//        void showEmpty(Type tag);
 
         void showMurmurList(List<Murmur> murmurs);
 
@@ -27,9 +45,6 @@ public class MurmurContract {
          */
         void saveMurmur(Murmur murmur);
 
-        /**
-         * 列出该用户的全部Murmur
-         */
         void listMurmur(String userId);
 
         void updateMurmur(Murmur murmur);

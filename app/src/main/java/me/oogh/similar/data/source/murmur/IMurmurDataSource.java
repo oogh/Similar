@@ -11,15 +11,36 @@ import me.oogh.similar.data.entry.Murmur;
  */
 
 public interface IMurmurDataSource {
+    /**
+     * 删除数据
+     *
+     * @param murmur
+     */
     void removeMurmur(Murmur murmur);
+
+    /**
+     * 保存数据
+     *
+     * @param murmur
+     */
+    void saveMurmur(@NonNull Murmur murmur) throws MurmurException;
+
+    /**
+     * 获取数据
+     *
+     * @param userId
+     * @param callback
+     */
+    void getMurmurList(String userId, OnMurmurLoadedCallback callback);
+
+    /**
+     * 更新数据
+     *
+     * @param murmur
+     */
+    void updateMurmur(Murmur murmur);
 
     interface OnMurmurLoadedCallback {
         void onMurmurLoaded(List<Murmur> murmurs);
     }
-
-    void saveMurmur(@NonNull Murmur murmur);
-
-    void getMurmurList(String userId, OnMurmurLoadedCallback callback);
-
-    void updateMurmur(Murmur murmur);
 }

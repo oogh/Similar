@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.oogh.similar.R;
-import me.oogh.similar.adapter.MurmurDailyListViewAdapter;
+import me.oogh.similar.adapter.MurmurRecycleAdapter;
 import me.oogh.similar.common.ActionModeCallback;
 import me.oogh.similar.common.Actionable;
 import me.oogh.similar.common.OnItemClickListener;
@@ -36,7 +35,9 @@ import me.oogh.similar.data.entry.Murmur;
 
 
 /**
- * Created by oogh on 18-3-4.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-04
+ * @description
  */
 
 public class TabDailyFragment extends Fragment implements Actionable {
@@ -51,7 +52,7 @@ public class TabDailyFragment extends Fragment implements Actionable {
     LinearLayout mEmptyView;
     private Unbinder mUnbinder;
 
-    private MurmurDailyListViewAdapter mAdapter;
+    private MurmurRecycleAdapter mAdapter;
 
     private ActionMode mActionMode;
 
@@ -69,7 +70,7 @@ public class TabDailyFragment extends Fragment implements Actionable {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDataSet = new ArrayList<>();
-        mAdapter = new MurmurDailyListViewAdapter(getContext(), mDataSet);
+        mAdapter = new MurmurRecycleAdapter(getContext(), mDataSet);
     }
 
     @Override
@@ -129,8 +130,6 @@ public class TabDailyFragment extends Fragment implements Actionable {
      * @param position
      */
     private void handleItemTouched(View view, int position) {
-
-        Log.i(TAG, "handleItemTouched: 当前点击位置 " + position);
         mAdapter.toggleSelectStatus(position);
         boolean hasItemSelected = mAdapter.getSelectedItemCount() > 0;
         if (hasItemSelected && mActionMode == null) {
@@ -152,7 +151,7 @@ public class TabDailyFragment extends Fragment implements Actionable {
     }
 
     /**
-     * TODO:删除选中的Items
+     * 删除选中的Items
      */
     private void removeItems() {
         SparseBooleanArray selectedItems = mAdapter.getSelectedItems();
@@ -178,25 +177,40 @@ public class TabDailyFragment extends Fragment implements Actionable {
         if (event.tag == Event.Tag.MURMUR_SHOW_LIST) {
             mSwipeRefreshView.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
-            mDataSet = event.murmurs;
-            mAdapter.updateDataSet(mDataSet);
-            EventBus.getDefault().removeStickyEvent(event);
+            List<Murmur> dailyList = new ArrayList<>();
+            for (Murmur murmur : event.murmurs) {
+                if ("daily".equals(murmur.getTag())) {
+                    dailyList.add(murmur);
+                }
+            }
+            if (dailyList.isEmpty()) {
+                showEmpty();
+            } else {
+                mDataSet = dailyList;
+                mAdapter.updateDataSet(mDataSet);
+            }
+//            EventBus.getDefault().removeStickyEvent(event);
         }
     }
 
-    /**
-     * 显示空白
-     *
-     * @param event
-     */
-    @Subscribe(sticky = true)
-    public void onShowEmpty(Event.MurmurListEvent event) {
-        if (event.tag == Event.Tag.MURMUR_SHOW_EMPTY) {
-            mEmptyView.setVisibility(View.VISIBLE);
-            mSwipeRefreshView.setVisibility(View.GONE);
-            EventBus.getDefault().removeStickyEvent(event);
-        }
+    private void showEmpty() {
+        mEmptyView.setVisibility(View.VISIBLE);
+        mSwipeRefreshView.setVisibility(View.GONE);
     }
+
+//    /**
+//     * 显示空白
+//     *
+//     * @param event
+//     */
+//    @Subscribe(sticky = true)
+//    public void onShowEmpty(Event.MurmurListEvent event) {
+//        if (event.tag == Event.Tag.MURMUR_SHOW_EMPTY) {
+//            mEmptyView.setVisibility(View.VISIBLE);
+//            mSwipeRefreshView.setVisibility(View.GONE);
+//            EventBus.getDefault().removeStickyEvent(event);
+//        }
+//    }
 
 
     @Override

@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +20,18 @@ import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.utils.DateUtils;
 
 /**
- * Created by oogh on 18-3-20.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-20
+ * @description
  */
 
-public class MurmurDailyListViewAdapter extends RecyclerView.Adapter<MurmurDailyListViewAdapter.ViewHolder> {
+public class MurmurRecycleAdapter extends RecyclerView.Adapter<MurmurRecycleAdapter.ViewHolder> {
     private List<Murmur> mDataSet;
 
     private SparseBooleanArray mSelectedItems;
     private Context mContext;
 
-    public MurmurDailyListViewAdapter(Context context, List<Murmur> dataSet) {
+    public MurmurRecycleAdapter(Context context, List<Murmur> dataSet) {
         mContext = context;
         mDataSet = dataSet;
         mSelectedItems = new SparseBooleanArray();
@@ -51,12 +52,12 @@ public class MurmurDailyListViewAdapter extends RecyclerView.Adapter<MurmurDaily
         notifyDataSetChanged();
     }
 
-    private static final String TAG = MurmurDailyListViewAdapter.class.getSimpleName();
+    private static final String TAG = MurmurRecycleAdapter.class.getSimpleName();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.murmur_daily_recycle_item, parent, false);
+                .inflate(R.layout.murmur_recycle_item, parent, false);
         ViewHolder holder = new ViewHolder(itemView);
         return holder;
     }
@@ -84,13 +85,11 @@ public class MurmurDailyListViewAdapter extends RecyclerView.Adapter<MurmurDaily
      * @param position
      */
     public void toggleSelectStatus(int position) {
-        Log.i(TAG, "\n\ntoggleSelectStatus:" + position + " 选中？ " + mSelectedItems.get(position));
         if (mSelectedItems.get(position)) {
             mSelectedItems.delete(position);
         } else {
             mSelectedItems.put(position, true);
         }
-        Log.i(TAG, "toggleSelectStatus:" + position + " 选中？ " + mSelectedItems.get(position));
         notifyDataSetChanged();
     }
 
@@ -113,9 +112,9 @@ public class MurmurDailyListViewAdapter extends RecyclerView.Adapter<MurmurDaily
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_murmur_daily_date)
+        @BindView(R.id.tv_murmur_date)
         TextView date;
-        @BindView(R.id.tv_murmur_daily_content)
+        @BindView(R.id.tv_murmur_content)
         TextView content;
 
         public ViewHolder(View itemView) {

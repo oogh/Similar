@@ -16,9 +16,11 @@ import butterknife.Unbinder;
 import me.oogh.similar.R;
 
 /**
- * Created by oogh on 18-3-18.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-18
+ * @description
  */
-public class MurmurDialog extends DialogFragment {
+public class DialogMurmurSelector extends DialogFragment {
     @BindView(R.id.rb_dialog_today)
     RadioButton mTodayView;
     @BindView(R.id.rb_dialog_future)
@@ -32,11 +34,11 @@ public class MurmurDialog extends DialogFragment {
         mListener = listener;
     }
 
-    public MurmurDialog() {
+    public DialogMurmurSelector() {
     }
 
-    public static MurmurDialog newInstance(String title) {
-        MurmurDialog dialog = new MurmurDialog();
+    public static DialogMurmurSelector newInstance(String title) {
+        DialogMurmurSelector dialog = new DialogMurmurSelector();
         Bundle args = new Bundle();
         args.putString("title", title);
         dialog.setArguments(args);

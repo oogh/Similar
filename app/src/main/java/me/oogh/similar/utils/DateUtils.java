@@ -14,4 +14,9 @@ public class DateUtils {
         return sdf.format(date);
     }
 
+    public static String format(long date) {
+        Date _date = new Date(date);
+        return format(_date);
+    }
+
 }

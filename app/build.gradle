@@ -31,15 +31,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
-    compile 'cn.bmob.android:bmob-sdk:3.5.6'
-    compile 'cn.bmob.android:bmob-im:2.0.9@aar'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.6'
+    implementation 'cn.bmob.android:bmob-im:2.0.9@aar'
     implementation files('libs/open_sdk_r5990_lite.jar')
-
-    compile 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
 repositories {
     mavenCentral()

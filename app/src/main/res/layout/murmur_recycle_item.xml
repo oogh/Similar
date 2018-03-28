@@ -9,7 +9,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_murmur_daily_date"
+        android:id="@+id/tv_murmur_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
@@ -17,10 +17,10 @@
         tools:text="2018年03月19日" />
 
     <TextView
-        android:id="@+id/tv_murmur_daily_content"
+        android:id="@+id/tv_murmur_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_murmur_daily_date"
+        android:layout_below="@+id/tv_murmur_date"
         android:ellipsize="end"
         android:fontFamily="@font/roboto_light"
         android:maxLines="1"

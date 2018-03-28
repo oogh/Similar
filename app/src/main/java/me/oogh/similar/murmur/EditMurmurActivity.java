@@ -17,6 +17,11 @@ import me.oogh.similar.data.entry.Event;
 import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.utils.DateUtils;
 
+/**
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-04
+ * @description
+ */
 public class EditMurmurActivity extends AppCompatActivity {
     private static final String TAG = EditMurmurActivity.class.getSimpleName();
 

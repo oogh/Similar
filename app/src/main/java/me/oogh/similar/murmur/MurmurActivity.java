@@ -18,6 +18,11 @@ import me.oogh.similar.my.MyActivity;
 import me.oogh.similar.utils.ActivityUtils;
 import me.oogh.similar.whisper.WhisperActivity;
 
+/**
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-04
+ * @description
+ */
 public class MurmurActivity extends BaseActivity {
     private static final String TAG = MurmurActivity.class.getSimpleName();
 

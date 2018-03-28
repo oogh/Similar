@@ -89,9 +89,9 @@ public class SigninFragment extends Fragment implements SigninContract.View {
             case R.id.btn_bmob_login:
                 User user = null;
                 if (mOneLoginView.isChecked()) {
-                    user = new User("oogh", "123");
+                    user = new User("user111", "123");
                 } else if (mTwoLoginView.isChecked()) {
-                    user = new User("sween", "123");
+                    user = new User("user222", "123");
                 }
                 mPresenter.login(SigninContract.TYPE.BMOB, user);
                 break;
