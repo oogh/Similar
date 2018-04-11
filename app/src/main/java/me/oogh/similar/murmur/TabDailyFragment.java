@@ -198,21 +198,6 @@ public class TabDailyFragment extends Fragment implements Actionable {
         mSwipeRefreshView.setVisibility(View.GONE);
     }
 
-//    /**
-//     * 显示空白
-//     *
-//     * @param event
-//     */
-//    @Subscribe(sticky = true)
-//    public void onShowEmpty(Event.MurmurListEvent event) {
-//        if (event.tag == Event.Tag.MURMUR_SHOW_EMPTY) {
-//            mEmptyView.setVisibility(View.VISIBLE);
-//            mSwipeRefreshView.setVisibility(View.GONE);
-//            EventBus.getDefault().removeStickyEvent(event);
-//        }
-//    }
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

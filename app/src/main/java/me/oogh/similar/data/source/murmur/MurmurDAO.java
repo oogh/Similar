@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobDate;
 import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.data.entry.User;
 
@@ -41,7 +42,7 @@ public class MurmurDAO {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USER_ID, murmur.getUser().getObjectId());
-        values.put(COLUMN_DATE, murmur.getDate().getTime());
+        values.put(COLUMN_DATE, murmur.getDate().getTimeStamp(murmur.getDate().getDate()));
         values.put(COLUMN_CONTENT, murmur.getContent());
         values.put(COLUMN_TAG, murmur.getTag());
         return db.insert(TABLE_NAME, null, values);
@@ -79,7 +80,7 @@ public class MurmurDAO {
             String content = cursor.getString(cursor.getColumnIndex(COLUMN_CONTENT));
             Long date = cursor.getLong(cursor.getColumnIndex(COLUMN_DATE));
             String tag = cursor.getString(cursor.getColumnIndex(COLUMN_TAG));
-            murmurs.add(new Murmur(null, new Date(date), content, tag));
+            murmurs.add(new Murmur(null, new BmobDate(new Date(date)), content, tag));
         }
         return murmurs;
     }
@@ -92,7 +93,9 @@ public class MurmurDAO {
         values.put(COLUMN_CONTENT, murmur.getContent());
 
         String whereClause = COLUMN_USER_ID + " = ? and " + COLUMN_DATE + " = ?";
-        String[] whereArgs = {BmobUser.getCurrentUser(User.class).getObjectId(), String.valueOf(murmur.getDate().getTime())};
+        String[] whereArgs = {
+                BmobUser.getCurrentUser(User.class).getObjectId(),
+                String.valueOf(murmur.getDate().getTimeStamp(murmur.getDate().getDate()))};
 
         return db.update(
                 TABLE_NAME,
@@ -111,7 +114,9 @@ public class MurmurDAO {
     public int deleteMurmur(Murmur murmur) {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
         String whereClause = COLUMN_USER_ID + "= ? and " + COLUMN_DATE + " = ?";
-        String[] whereArgs = {BmobUser.getCurrentUser(User.class).getObjectId(), murmur.getDate().getTime() + ""};
+        String[] whereArgs = {
+                BmobUser.getCurrentUser(User.class).getObjectId(),
+                String.valueOf(BmobDate.getTimeStamp(murmur.getDate().getDate()))};
         return db.delete(TABLE_NAME, whereClause, whereArgs);
     }
 }

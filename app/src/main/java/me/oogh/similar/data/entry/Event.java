@@ -13,8 +13,11 @@ public class Event {
         MURMUR_PARAM, // 传递 Murmur
         MURMUR_REMOVE, // 移除 Murmur
         MURMUR_SHOW_LIST, // 显示列表
-        MURMUR_SHOW_EMPTY // 显示空白
+        MURMUR_SHOW_EMPTY, // 显示空白
+        MURMUR_CACHE_LIST // 显示缓存的列表
+    }
 
+    public static class MurmurUpdateEvent {
     }
 
     public static class MurmurListEvent {

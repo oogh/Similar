@@ -50,8 +50,6 @@ public class WhisperActivity extends AppCompatActivity {
      * connect BottomNavigation to ViewPager
      */
     private void setupBottomNavigationWithViewPager() {
-
-
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_message:

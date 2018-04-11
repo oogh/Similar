@@ -29,12 +29,15 @@ public class MurmurContract {
         }
     }
 
+    public enum SyncType {
+        SAVE, REMOVE, UPDATE
+    }
+
     interface View extends BaseView<Presenter> {
-
-//        void showEmpty(Type tag);
-
+        void showFailed();
         void showMurmurList(List<Murmur> murmurs);
 
+        void showCachedMurmurList(List<Murmur> murmurs);
     }
 
     interface Presenter extends BasePresenter {
@@ -50,5 +53,7 @@ public class MurmurContract {
         void updateMurmur(Murmur murmur);
 
         void removeMurmur(Murmur murmur);
+
+        void listCachedMurmur(String userId);
     }
 }

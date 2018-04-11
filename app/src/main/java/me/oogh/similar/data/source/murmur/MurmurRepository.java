@@ -15,6 +15,7 @@ public class MurmurRepository implements IMurmurDataSource {
     private final IMurmurDataSource mLocalDataSource;
     private final IMurmurDataSource mRemoteDataSource;
 
+
     private MurmurRepository(@NonNull IMurmurDataSource localDataSource,
                              @NonNull IMurmurDataSource remoteDataSource) {
         mLocalDataSource = localDataSource;
@@ -31,23 +32,31 @@ public class MurmurRepository implements IMurmurDataSource {
 
     @Override
     public void removeMurmur(Murmur murmur) {
-        mLocalDataSource.removeMurmur(murmur);
+        mRemoteDataSource.removeMurmur(murmur);
     }
 
     @Override
     public void saveMurmur(@NonNull Murmur murmur) {
-        mLocalDataSource.saveMurmur(murmur);
+        mRemoteDataSource.saveMurmur(murmur);
     }
 
     @Override
     public void getMurmurList(String userId, OnMurmurLoadedCallback callback) {
-        mLocalDataSource.getMurmurList(userId, callback);
+        mRemoteDataSource.getMurmurList(userId, callback);
     }
 
     @Override
     public void updateMurmur(Murmur murmur) {
-        mLocalDataSource.updateMurmur(murmur);
-
+        mRemoteDataSource.updateMurmur(murmur);
     }
 
+    @Override
+    public void cacheMurmur(Murmur murmur) {
+        mLocalDataSource.cacheMurmur(murmur);
+    }
+
+    @Override
+    public void getCachedMurmurList(String userId, OnMurmurLoadedCallback callback) {
+        mLocalDataSource.getCachedMurmurList(userId, callback);
+    }
 }

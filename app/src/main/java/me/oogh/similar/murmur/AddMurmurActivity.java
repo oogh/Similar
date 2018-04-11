@@ -15,6 +15,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobDate;
 import me.oogh.similar.R;
 import me.oogh.similar.data.entry.Event;
 import me.oogh.similar.data.entry.Murmur;
@@ -71,7 +72,7 @@ public class AddMurmurActivity extends AppCompatActivity {
                 EventBus.getDefault().postSticky(new Event.MurmurEvent(
                         new Murmur(
                                 BmobUser.getCurrentUser(User.class),
-                                mSavedDate,
+                                new BmobDate(mSavedDate),
                                 mAddMurmurView.getText().toString(),
                                 mMurmurType),
                         Event.Tag.MURMUR_ADD_COMPLETED));

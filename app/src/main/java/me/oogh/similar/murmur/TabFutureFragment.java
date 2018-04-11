@@ -106,6 +106,11 @@ public class TabFutureFragment extends Fragment implements Actionable {
             }
         }));
 
+        mSwipeRefreshView.setOnRefreshListener(() -> {
+            EventBus.getDefault().post(new Event.MurmurUpdateEvent());
+            mSwipeRefreshView.setRefreshing(false);
+        });
+
     }
 
     /**

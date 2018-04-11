@@ -23,7 +23,7 @@ public interface IMurmurDataSource {
      *
      * @param murmur
      */
-    void saveMurmur(@NonNull Murmur murmur) throws MurmurException;
+    void saveMurmur(@NonNull Murmur murmur);
 
     /**
      * 获取数据
@@ -39,6 +39,10 @@ public interface IMurmurDataSource {
      * @param murmur
      */
     void updateMurmur(Murmur murmur);
+
+    void cacheMurmur(Murmur murmur);
+
+    void getCachedMurmurList(String userId, OnMurmurLoadedCallback callback);
 
     interface OnMurmurLoadedCallback {
         void onMurmurLoaded(List<Murmur> murmurs);

@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".murmur.CacheMurmurActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_murmur_cache_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorSystemUI"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.Toolbar"
+        app:titleTextColor="@color/colorTitleText" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_murmur_cache_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_murmur_cache_activity" />
+</RelativeLayout>

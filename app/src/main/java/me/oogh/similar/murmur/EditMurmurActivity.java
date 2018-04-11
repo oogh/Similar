@@ -3,6 +3,7 @@ package me.oogh.similar.murmur;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -85,11 +86,13 @@ public class EditMurmurActivity extends AppCompatActivity {
                 mTextAreaView.setEnabled(true);
                 break;
             case R.id.action_edit_murmur_done:
-                EventBus.getDefault().postSticky(new Event.MurmurEvent(new Murmur(
+                Murmur murmur = new Murmur(
                         mMurmur.getUser(),
                         mMurmur.getDate(),
                         mTextAreaView.getText().toString(),
-                        mMurmur.getTag()), Event.Tag.MURMUR_EDIT_COMPLETED));
+                        mMurmur.getTag());
+                murmur.setObjectId(mMurmur.getObjectId());
+                EventBus.getDefault().postSticky(new Event.MurmurEvent(murmur, Event.Tag.MURMUR_EDIT_COMPLETED));
                 finish();
                 break;
             default:
@@ -101,6 +104,7 @@ public class EditMurmurActivity extends AppCompatActivity {
     @Subscribe(sticky = true)
     public void onReceiveMurmur(Event.MurmurEvent event) {
         if (event.tag == Event.Tag.MURMUR_PARAM) {
+            Log.i(TAG, "onReceiveMurmur: murmur.objectId = " + event.murmur.getObjectId());
             mMurmur = event.murmur;
             EventBus.getDefault().removeStickyEvent(event);
         }

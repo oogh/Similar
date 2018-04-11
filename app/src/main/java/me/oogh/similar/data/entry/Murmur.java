@@ -1,9 +1,7 @@
 package me.oogh.similar.data.entry;
 
-import java.util.Date;
-
 import cn.bmob.v3.BmobObject;
-import me.oogh.similar.utils.DateUtils;
+import cn.bmob.v3.datatype.BmobDate;
 
 /**
  * Created by oogh on 18-3-19.
@@ -11,14 +9,14 @@ import me.oogh.similar.utils.DateUtils;
 
 public class Murmur extends BmobObject {
     private User user;
-    private Date date;
+    private BmobDate date;
     private String content;
     private String tag;
 
     public Murmur() {
     }
 
-    public Murmur(User user, Date date, String content, String tag) {
+    public Murmur(User user, BmobDate date, String content, String tag) {
         this.user = user;
         this.date = date;
         this.content = content;
@@ -33,11 +31,11 @@ public class Murmur extends BmobObject {
         this.user = user;
     }
 
-    public Date getDate() {
+    public BmobDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(BmobDate date) {
         this.date = date;
     }
 
@@ -61,7 +59,7 @@ public class Murmur extends BmobObject {
     public String toString() {
         return "Murmur{" +
                 "user=" + user +
-                ", date=" + DateUtils.format(date) +
+                ", date=" + date.getDate() +
                 ", content='" + content + '\'' +
                 ", tag='" + tag + '\'' +
                 '}';

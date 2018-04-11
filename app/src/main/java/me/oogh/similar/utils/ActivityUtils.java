@@ -21,4 +21,11 @@ public class ActivityUtils {
         from.overridePendingTransition(0, 0);
         from.finish();
     }
+
+    public static void navigateToWithNoFinish(Activity from, Class<? extends Activity> to) {
+        from.startActivity(new Intent(from, to));
+        from.overridePendingTransition(0, 0);
+    }
+
+
 }

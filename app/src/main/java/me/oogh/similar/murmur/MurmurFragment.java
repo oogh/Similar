@@ -9,6 +9,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -29,6 +32,7 @@ import me.oogh.similar.adapter.MurmurViewPagerAdapter;
 import me.oogh.similar.data.entry.Event;
 import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.data.entry.User;
+import me.oogh.similar.utils.ActivityUtils;
 
 /**
  * @author oogh <oogh216@163.com>
@@ -46,6 +50,7 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
     private Unbinder mUnbinder;
 
     private MurmurContract.Presenter mPresenter;
+    private List<Murmur> mDataSet;
 
     @Override
     public void setPresenter(@NonNull MurmurContract.Presenter presenter) {
@@ -71,12 +76,32 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new MurmurViewPagerAdapter(getContext(), getChildFragmentManager());
+        setHasOptionsMenu(true);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.murmur_action_cached, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_murmur_cached:
+                ActivityUtils.navigateToWithNoFinish(getActivity(), CacheMurmurActivity.class);
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     @Nullable
@@ -162,6 +187,7 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
         super.onResume();
         mPresenter.start();
         mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
+//        mPresenter.listCachedMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
     }
 
     @Override
@@ -188,6 +214,7 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
             mPresenter.saveMurmur(event.murmur);
             mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
             EventBus.getDefault().removeStickyEvent(event);
+            mPresenter.listCachedMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
         }
     }
 
@@ -213,9 +240,29 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
         }
     }
 
+    /**
+     * TODO: BUG 网络连接不好时，会出现视图更新不即时
+     *
+     * @param event
+     */
+    public void onUpdateMurmur(Event.MurmurUpdateEvent event) {
+        mPresenter.listMurmur(BmobUser.getCurrentUser(User.class).getObjectId());
+    }
+
+    @Override
+    public void showFailed() {
+        Toast.makeText(getContext(), "保存失败，已存储至草稿箱", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void showMurmurList(List<Murmur> murmurs) {
+        mDataSet = murmurs;
         EventBus.getDefault().postSticky(new Event.MurmurListEvent(murmurs, Event.Tag.MURMUR_SHOW_LIST));
+    }
+
+    @Override
+    public void showCachedMurmurList(List<Murmur> murmurs) {
+        EventBus.getDefault().postSticky(new Event.MurmurListEvent(murmurs, Event.Tag.MURMUR_CACHE_LIST));
     }
 
 }

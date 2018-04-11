@@ -7,7 +7,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_whisper_activity"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorSystemUI"
         android:elevation="4dp"
         app:titleTextColor="@color/colorTitleText">
@@ -34,7 +34,7 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/btm_nav_whisper"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/colorWhite"
         app:itemIconTint="@color/selector_item_nav"

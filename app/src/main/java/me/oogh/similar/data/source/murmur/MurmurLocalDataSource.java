@@ -2,6 +2,7 @@ package me.oogh.similar.data.source.murmur;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import me.oogh.similar.data.entry.Murmur;
 
@@ -12,6 +13,7 @@ import me.oogh.similar.data.entry.Murmur;
  */
 
 public class MurmurLocalDataSource implements IMurmurDataSource {
+    private static final String TAG = MurmurLocalDataSource.class.getSimpleName();
 
     private MurmurDAO mDAO;
 
@@ -38,4 +40,16 @@ public class MurmurLocalDataSource implements IMurmurDataSource {
     public void updateMurmur(Murmur murmur) {
         mDAO.update(murmur);
     }
+
+    @Override
+    public void cacheMurmur(Murmur murmur) {
+        Log.i(TAG, "cacheMurmur: 保存失败，执行到这里了...");
+        mDAO.insert(murmur);
+    }
+
+    @Override
+    public void getCachedMurmurList(String userId, OnMurmurLoadedCallback callback) {
+        callback.onMurmurLoaded(mDAO.findAll(userId));
+    }
+
 }
