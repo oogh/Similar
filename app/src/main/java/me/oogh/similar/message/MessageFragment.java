@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.oogh.similar.R;
-import me.oogh.similar.adapter.MessageListAdapter;
+import me.oogh.similar.adapter.MessageRecycleAdapter;
 import me.oogh.similar.data.entry.Message;
 
 /**
@@ -36,7 +36,7 @@ public class MessageFragment extends Fragment implements MessageContract.View {
     TextView mNoMessageView;
     private Unbinder mUnbinder;
     private MessageContract.Presenter mPresenter;
-    private MessageListAdapter mAdapter;
+    private MessageRecycleAdapter mAdapter;
 
     public MessageFragment() {
 
@@ -50,7 +50,7 @@ public class MessageFragment extends Fragment implements MessageContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new MessageListAdapter(new ArrayList<>());
+        mAdapter = new MessageRecycleAdapter(new ArrayList<>());
     }
 
     @Nullable

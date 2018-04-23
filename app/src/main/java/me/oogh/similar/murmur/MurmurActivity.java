@@ -16,7 +16,7 @@ import me.oogh.similar.data.source.murmur.MurmurRepository;
 import me.oogh.similar.message.MessageActivity;
 import me.oogh.similar.my.MyActivity;
 import me.oogh.similar.utils.ActivityUtils;
-import me.oogh.similar.whisper.WhisperMainActivity;
+import me.oogh.similar.whisper.WhisperActivity;
 
 /**
  * @author oogh <oogh216@163.com>
@@ -74,7 +74,7 @@ public class MurmurActivity extends BaseActivity {
                 case R.id.action_murmur:
                     break;
                 case R.id.action_whisper:
-                    ActivityUtils.navigateTo(MurmurActivity.this, WhisperMainActivity.class);
+                    ActivityUtils.navigateTo(MurmurActivity.this, WhisperActivity.class);
                     break;
                 case R.id.action_my:
                     ActivityUtils.navigateTo(MurmurActivity.this, MyActivity.class);

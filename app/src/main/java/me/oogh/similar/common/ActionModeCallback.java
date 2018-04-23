@@ -15,15 +15,21 @@ import me.oogh.similar.R;
 public class ActionModeCallback implements ActionMode.Callback {
     private Handler mHandler;
     private Actionable mActionable;
+    private Integer mMenuId;
 
     public ActionModeCallback(Actionable actionable, Handler handler) {
+        this(actionable, handler, R.menu.murmur_action_mode_items);
+    }
+
+    public ActionModeCallback(Actionable actionable, Handler handler, int menuId) {
         mActionable = actionable;
         mHandler = handler;
+        mMenuId = menuId;
     }
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        mode.getMenuInflater().inflate(R.menu.murmur_action_mode_items, menu);
+        mode.getMenuInflater().inflate(mMenuId, menu);
         return true;
     }
 
@@ -38,6 +44,8 @@ public class ActionModeCallback implements ActionMode.Callback {
             case R.id.action_delete_murmur_today:
                 mHandler.handle(Tag.DELETE);
                 break;
+            case R.id.action_select_whisper_done:
+                mHandler.handle(Tag.DONE);
             default:
                 break;
         }
@@ -50,7 +58,7 @@ public class ActionModeCallback implements ActionMode.Callback {
     }
 
     public enum Tag {
-        DELETE
+        DELETE, DONE
     }
 
     public interface Handler {

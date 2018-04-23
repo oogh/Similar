@@ -92,9 +92,25 @@
             android:name=".murmur.CacheMurmurActivity"
             android:theme="@style/AppTheme.Colored" />
         <activity
-            android:name=".whisper.WhisperMainActivity"
+            android:name=".whisper.WhisperAllActivity"
             android:theme="@style/AppTheme.Colored" />
-        <activity android:name=".whisper.WhisperTopicActivity"></activity>
+        <activity
+            android:name=".whisper.WhisperAddTopicActivity"
+            android:theme="@style/AppTheme.Colored"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".whisper.WhisperTopicDetailActivity"
+            android:theme="@style/AppTheme.Colored" />
+        <activity
+            android:name=".whisper.AddWhisperActivity"
+            android:theme="@style/AppTheme.Colored" />
+        <activity
+            android:name=".whisper.EditWhisperActivity"
+            android:theme="@style/AppTheme.Colored"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".whisper.SelectWhisperActivity"
+            android:theme="@style/AppTheme.Colored"></activity>
     </application>
 
 </manifest>

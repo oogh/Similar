@@ -13,7 +13,9 @@ import butterknife.Unbinder;
 import me.oogh.similar.R;
 
 /**
- * Created by oogh on 18-3-6.
+ * @author oogh <oogh216@163.com>
+ * @date 2018-03-06
+ * @description
  */
 
 public class FoundFragment extends Fragment implements WhisperContract.View {

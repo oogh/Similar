@@ -16,7 +16,7 @@ import me.oogh.similar.R;
 import me.oogh.similar.murmur.MurmurActivity;
 import me.oogh.similar.my.MyActivity;
 import me.oogh.similar.utils.ActivityUtils;
-import me.oogh.similar.whisper.WhisperMainActivity;
+import me.oogh.similar.whisper.WhisperActivity;
 
 /**
  * @author oogh <oogh216@163.com>
@@ -87,7 +87,7 @@ public class MessageActivity extends AppCompatActivity {
                     ActivityUtils.navigateTo(MessageActivity.this, MurmurActivity.class);
                     break;
                 case R.id.action_whisper:
-                    ActivityUtils.navigateTo(MessageActivity.this, WhisperMainActivity.class);
+                    ActivityUtils.navigateTo(MessageActivity.this, WhisperActivity.class);
                     break;
                 case R.id.action_my:
                     ActivityUtils.navigateTo(MessageActivity.this, MyActivity.class);

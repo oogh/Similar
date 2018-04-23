@@ -19,12 +19,12 @@ import me.oogh.similar.data.entry.Message;
  * Created by oogh on 18-3-2.
  */
 
-public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {
+public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAdapter.ViewHolder> {
 
 
     private List<Message> mMessages;
 
-    public MessageListAdapter(List<Message> messages) {
+    public MessageRecycleAdapter(List<Message> messages) {
         mMessages = messages;
     }
 

@@ -19,4 +19,6 @@
     <string name="empty_murmur_daily_content">写给自己关于今天的故事今天过得怎么样</string>
     <string name="empty_murmur_future_title">我亲爱的未来</string>
     <string name="empty_murmur_future_content">写给未来的自己在那时收到现在寄出的胶囊</string>
+    <string name="fake_string">初恋你就别怪我了，当初真不是不在乎你，不知道你生日也不知道你手机号不是我不记，而是我这个人记不住日子跟手机号，这不，今天我自己过生日又一次被提醒</string>
+    <string name="temp_str"><![CDATA[<每天许一个小小心愿>]]></string>
 </resources>

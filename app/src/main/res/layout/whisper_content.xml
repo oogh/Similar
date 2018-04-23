@@ -2,10 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_whisper_activity"
+        android:id="@+id/tb_whisper_main_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorSystemUI"
@@ -13,31 +14,44 @@
         app:titleTextColor="@color/colorTitleText">
 
         <TextView
-            android:id="@+id/tv_whisper_activity_title"
+            android:id="@+id/tv_whisper_main_activity_title"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="4dp"
-            android:text="@string/title_whisper"
+            android:text="心愿单"
             android:textColor="@android:color/white" />
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_whisper"
+    <TextView
+        android:id="@+id/tv_empty_whisper_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/roboto_light"
+        android:text="你有什么未了的心语么"
+        android:textSize="20sp"
+        android:visibility="visible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_whisper_main_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btm_nav_whisper"
-        android:layout_below="@id/tb_whisper_activity" />
+        android:layout_above="@+id/btn_whisper_main_activity"
+        android:layout_below="@+id/tb_whisper_main_activity"
+        android:visibility="gone" />
 
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/btm_nav_whisper"
+    <Button
+        android:id="@+id/btn_whisper_main_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorWhite"
-        app:itemIconTint="@color/selector_item_nav"
-        app:itemTextColor="@color/selector_item_nav"
-        app:menu="@menu/bottom_nav_items" />
+        android:background="@color/colorShadow"
+        android:fontFamily="@font/roboto_bold"
+        android:text="飞向心语的银河"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp" />
+
+
 </RelativeLayout>

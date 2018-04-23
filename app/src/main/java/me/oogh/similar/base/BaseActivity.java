@@ -19,7 +19,5 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         ExitDialog dialog = ExitDialog.getInstance("退出");
         dialog.show(getSupportFragmentManager(), "exit_dialog");
-//        super.onBackPressed();
-
     }
 }

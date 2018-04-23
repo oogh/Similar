@@ -54,4 +54,17 @@ public class OnItemClickListener extends RecyclerView.SimpleOnItemTouchListener 
         void handleLongPress(View view, int position);
     }
 
+    public static class DelegateHandler implements Handler {
+
+        @Override
+        public void handleClick(View view, int position) {
+
+        }
+
+        @Override
+        public void handleLongPress(View view, int position) {
+
+        }
+    }
+
 }

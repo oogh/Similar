@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@drawable/ic_ripple_recycle_item"
+    android:clickable="true"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp">
+
+    <TextView
+        android:id="@+id/tv_whisper_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto"
+        android:maxLines="4"
+        android:padding="5dp"
+        android:textSize="18sp"
+        tools:text="@string/fake_string" />
+
+</RelativeLayout>
