@@ -3,12 +3,12 @@
     <item
         android:id="@+id/action_message"
         android:icon="@drawable/ic_nav_message"
-        android:title="动态" />
+        android:title="全部心语" />
 
     <item
         android:id="@+id/action_murmur"
         android:icon="@drawable/ic_nav_murmur"
-        android:title="发现" />
+        android:title="我的心语" />
 
     <item
         android:id="@+id/action_whisper"

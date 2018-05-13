@@ -22,15 +22,24 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 import me.oogh.similar.R;
 import me.oogh.similar.adapter.WhisperSelectAdapter;
 import me.oogh.similar.common.ActionModeCallback;
 import me.oogh.similar.common.Actionable;
 import me.oogh.similar.common.OnItemClickListener;
+import me.oogh.similar.data.entry.AllWhisper;
 import me.oogh.similar.data.entry.MyTopic;
 import me.oogh.similar.data.entry.User;
 import me.oogh.similar.data.entry.Whisper;
 
+
+/**
+ * @author oogh <oogh216@163.com>
+ * @date 2018-04-06
+ * @description 选择心语
+ */
 public class SelectWhisperActivity extends AppCompatActivity implements Actionable {
     private static final String TAG = SelectWhisperActivity.class.getSimpleName();
 
@@ -52,6 +61,7 @@ public class SelectWhisperActivity extends AppCompatActivity implements Actionab
         if (msg.obj instanceof MyTopic) {
             BmobQuery<Whisper> query = new BmobQuery<>();
             query.addWhereEqualTo("topic", (MyTopic) msg.obj);
+            query.addWhereEqualTo("added", false);
             query.include("topic");
             query.findObjects(new FindListener<Whisper>() {
                 @Override
@@ -79,13 +89,13 @@ public class SelectWhisperActivity extends AppCompatActivity implements Actionab
         mRecycleView.setLayoutManager(new LinearLayoutManager(this));
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.addOnItemTouchListener(new OnItemClickListener(this, mRecycleView, new OnItemClickListener.DelegateHandler() {
-
-            @Override
-            public void handleClick(View view, int position) {
-                if (mActionMode != null) {
-                    handleItemTouched(view, position);
-                }
-            }
+            /* 改变选择方式，只通过长按者一种方式，长按选中，长按取消选中 */
+//            @Override
+//            public void handleClick(View view, int position) {
+////                if (mActionMode != null) {
+////                    handleItemTouched(view, position);
+////                }
+//            }
 
             @Override
             public void handleLongPress(View view, int position) {
@@ -127,20 +137,46 @@ public class SelectWhisperActivity extends AppCompatActivity implements Actionab
     }
 
     private void handleItemTouched(View view, final int position) {
+
+        if (mActionMode != null) {
+            mActionMode.finish();
+            return;
+        }
+
         mAdapter.clearSelectedItems();
         mAdapter.toggleSelectStatus(position);
-//        int count = mAdapter.getSelectedItemCount();
-//        boolean hasItemSelected = count > 0;
-//        if (hasItemSelected && mActionMode == null) {
-        Log.i(TAG, "当前点击位置" + position);
-        final String content = mDataSet.get(position).getContent();
-        Log.i(TAG, "handleItemTouched: content=" + content);
-        // TODO : BUG 当 mActionMode！=null的时候，mActionMode = null就不执行了
         mActionMode = startSupportActionMode(new ActionModeCallback(
                 this,
                 tag -> {
                     if (tag == ActionModeCallback.Tag.DONE) {
-                        Log.i(TAG, "handleItemTouched: 打印数据位置=" + position + " -> " + content);
+//                        Log.i(TAG, "handleItemTouched: 打印数据位置=" + position + " -> " + mDataSet.get(position).getContent());
+                        Whisper whisper = mDataSet.get(position);
+                        whisper.setAdded(true);
+                        whisper.update(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    /* 更新成功, 不做任何处理 */
+                                } else {
+                                    /* 更新失败，打印错误日志 */
+                                    Toast.makeText(SelectWhisperActivity.this, "更新Whisper失败", Toast.LENGTH_SHORT).show();
+                                    Log.e(TAG, e.getMessage(), e);
+                                }
+                            }
+                        });
+
+                        AllWhisper allWhisper = new AllWhisper(whisper);
+                        allWhisper.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                if (e == null) {
+                                    Toast.makeText(SelectWhisperActivity.this, "掷入成功", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SelectWhisperActivity.this, "掷入失败", Toast.LENGTH_SHORT).show();
+                                    Log.e(TAG, "done: 掷入失败", e);
+                                }
+                            }
+                        });
                         finish();
                     }
                 },

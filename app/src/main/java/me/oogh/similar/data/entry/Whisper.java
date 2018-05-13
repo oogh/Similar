@@ -11,12 +11,15 @@ public class Whisper extends BmobObject {
     private String content;
     private MyTopic topic;
 
+    private Boolean added = false;
+
     public Whisper() {
     }
 
-    public Whisper(String content, MyTopic topic) {
+    public Whisper(String content, MyTopic topic, Boolean added) {
         this.content = content;
         this.topic = topic;
+        this.added = added;
     }
 
     public String getContent() {
@@ -33,5 +36,13 @@ public class Whisper extends BmobObject {
 
     public void setTopic(MyTopic topic) {
         this.topic = topic;
+    }
+
+    public Boolean getAdded() {
+        return added;
+    }
+
+    public void setAdded(Boolean added) {
+        this.added = added;
     }
 }

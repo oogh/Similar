@@ -17,20 +17,19 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/btn_title"
+            android:id="@+id/btn_all_title"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
             android:fontFamily="@font/roboto_bold"
             android:text="#今日话题#"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/tv_all_content"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_below="@+id/btn_title"
+            android:layout_below="@+id/btn_all_title"
             android:ellipsize="end"
             android:maxLines="3"
             android:padding="5dp"

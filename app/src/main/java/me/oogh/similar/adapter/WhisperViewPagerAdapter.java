@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import me.oogh.similar.whisper.FoundFragment;
+import me.oogh.similar.whisper.WhisperMyFragment;
 import me.oogh.similar.whisper.HotFragment;
-import me.oogh.similar.whisper.MomentsFragment;
+import me.oogh.similar.whisper.WhisperAllFragment;
 
 /**
  * Created by oogh on 18-3-6.
@@ -24,10 +24,10 @@ public class WhisperViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = MomentsFragment.newInstance();
+                fragment = WhisperAllFragment.newInstance();
                 break;
             case 1:
-                fragment = FoundFragment.newInstance();
+                fragment = WhisperMyFragment.newInstance();
                 break;
             case 2:
                 fragment = HotFragment.newInstance();

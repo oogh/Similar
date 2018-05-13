@@ -58,7 +58,7 @@ public class AddWhisperActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add_whisper_done:
                 String content = mEditWhisperView.getText().toString();
-                Whisper whisper = new Whisper(content, mMyTopic);
+                Whisper whisper = new Whisper(content, mMyTopic, false);
                 EventBus.getDefault().postSticky(
                         new Event.WhisperEvent(whisper, Event.Tag.WHISPER_ADD_COMPLETED));
                 finish();
