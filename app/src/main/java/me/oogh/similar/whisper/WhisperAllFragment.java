@@ -1,5 +1,6 @@
 package me.oogh.similar.whisper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import me.oogh.similar.R;
 import me.oogh.similar.adapter.WhisperAllAdapter;
+import me.oogh.similar.common.OnItemClickListener;
 import me.oogh.similar.data.entry.AllWhisper;
 
 /**
@@ -30,12 +32,13 @@ import me.oogh.similar.data.entry.AllWhisper;
  */
 
 public class WhisperAllFragment extends Fragment implements WhisperContract.View {
+    private static final String TAG = WhisperAllFragment.class.getSimpleName();
 
     private Unbinder mUnbinder;
     @BindView(R.id.rv_whisper_all_list)
     RecyclerView mWhisperListView;
 
-    private List<AllWhisper> mDataset;
+    private List<AllWhisper> mDataSet;
     private WhisperAllAdapter mAdapter;
 
     @Override
@@ -54,7 +57,7 @@ public class WhisperAllFragment extends Fragment implements WhisperContract.View
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new WhisperAllAdapter(mDataset = new ArrayList<>());
+        mAdapter = new WhisperAllAdapter(mDataSet = new ArrayList<>());
     }
 
     @Nullable
@@ -70,6 +73,13 @@ public class WhisperAllFragment extends Fragment implements WhisperContract.View
         super.onViewCreated(view, savedInstanceState);
         mWhisperListView.setLayoutManager(new LinearLayoutManager(getContext()));
         mWhisperListView.setAdapter(mAdapter);
+        mWhisperListView.addOnItemTouchListener(new OnItemClickListener(getContext(), mWhisperListView, new OnItemClickListener.DelegateHandler() {
+            @Override
+            public void handleClick(View view, int position) {
+                super.handleClick(view, position);
+                startActivity(new Intent(getActivity(), WhisperDetailActivity.class));
+            }
+        }));
     }
 
     @Override
@@ -81,8 +91,8 @@ public class WhisperAllFragment extends Fragment implements WhisperContract.View
         query.findObjects(new FindListener<AllWhisper>() {
             @Override
             public void done(List<AllWhisper> list, BmobException e) {
-                mDataset = list;
-                mAdapter.updateDataSet(mDataset);
+                mDataSet = list;
+                mAdapter.updateDataSet(mDataSet);
             }
         });
     }

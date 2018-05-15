@@ -149,7 +149,6 @@ public class SelectWhisperActivity extends AppCompatActivity implements Actionab
                 this,
                 tag -> {
                     if (tag == ActionModeCallback.Tag.DONE) {
-//                        Log.i(TAG, "handleItemTouched: 打印数据位置=" + position + " -> " + mDataSet.get(position).getContent());
                         Whisper whisper = mDataSet.get(position);
                         whisper.setAdded(true);
                         whisper.update(new UpdateListener() {

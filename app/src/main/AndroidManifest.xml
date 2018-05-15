@@ -110,7 +110,8 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".whisper.SelectWhisperActivity"
-            android:theme="@style/AppTheme.Colored"></activity>
+            android:theme="@style/AppTheme.Colored" />
+        <activity android:name=".whisper.WhisperDetailActivity"></activity>
     </application>
 
 </manifest>
