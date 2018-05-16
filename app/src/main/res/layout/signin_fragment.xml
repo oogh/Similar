@@ -4,37 +4,37 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <!--<RadioGroup-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <RadioButton
-            android:id="@+id/rb_user1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="用户111" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb_user1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:checked="true"-->
+            <!--android:text="用户111" />-->
 
-        <RadioButton
-            android:id="@+id/rb_user2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户222" />
-    </RadioGroup>
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb_user2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="用户222" />-->
+    <!--</RadioGroup>-->
 
 
-    <Button
-        android:id="@+id/btn_bmob_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Bmob登录" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_bmob_login"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:text="Bmob登录" />-->
 
-    <Button
-        android:id="@+id/btn_qq_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="QQ登录" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_qq_login"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="QQ登录" />-->
 
 </LinearLayout>
