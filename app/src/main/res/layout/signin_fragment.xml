@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@mipmap/ic_bg_main">
 
-    <!--<RadioGroup-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_bmob_login">
 
-        <!--<RadioButton-->
-            <!--android:id="@+id/rb_user1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:checked="true"-->
-            <!--android:text="用户111" />-->
+        <RadioButton
+            android:id="@+id/rb_user1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="用户111" />
 
-        <!--<RadioButton-->
-            <!--android:id="@+id/rb_user2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="用户222" />-->
-    <!--</RadioGroup>-->
+        <RadioButton
+            android:id="@+id/rb_user2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户222" />
+    </RadioGroup>
 
+    <Button
+        android:id="@+id/btn_bmob_login"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_qq_login"
+        android:layout_marginBottom="5dp"
+        android:text="Bmob登录" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btn_bmob_login"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--android:text="Bmob登录" />-->
+    <Button
+        android:id="@+id/btn_qq_login"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_tips"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:text="QQ登录"
+        android:textSize="16sp" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btn_qq_login"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="QQ登录" />-->
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:text="首次登录即为注册"
+        android:textColor="@color/colorGrayDark"
+        android:textSize="14sp" />
 
-</LinearLayout>
+</RelativeLayout>

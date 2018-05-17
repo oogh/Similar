@@ -77,7 +77,9 @@ public class WhisperAllFragment extends Fragment implements WhisperContract.View
             @Override
             public void handleClick(View view, int position) {
                 super.handleClick(view, position);
-                startActivity(new Intent(getActivity(), WhisperDetailActivity.class));
+                Intent intent = new Intent(getActivity(), WhisperDetailActivity.class);
+                intent.putExtra("whisper", mDataSet.get(position).getWhisper());
+                startActivity(intent);
             }
         }));
     }

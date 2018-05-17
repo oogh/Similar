@@ -111,7 +111,9 @@
         <activity
             android:name=".whisper.SelectWhisperActivity"
             android:theme="@style/AppTheme.Colored" />
-        <activity android:name=".whisper.WhisperDetailActivity"></activity>
+        <activity
+            android:name=".whisper.WhisperDetailActivity"
+            android:theme="@style/AppTheme.Colored"></activity>
     </application>
 
 </manifest>

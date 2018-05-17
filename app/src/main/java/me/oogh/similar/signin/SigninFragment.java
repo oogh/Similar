@@ -58,7 +58,7 @@ public class SigninFragment extends Fragment implements SigninContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.signin_fragment_2, container, false);
+        View rootView = inflater.inflate(R.layout.signin_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
