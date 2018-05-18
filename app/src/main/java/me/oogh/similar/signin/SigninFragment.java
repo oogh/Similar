@@ -19,6 +19,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.listener.ConnectListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
 import me.oogh.similar.R;
 import me.oogh.similar.data.entry.User;
 import me.oogh.similar.message.MessageActivity;
@@ -104,6 +108,15 @@ public class SigninFragment extends Fragment implements SigninContract.View {
     @Override
     public void showSucceed() {
         Toast.makeText(getContext(), "登录成功", Toast.LENGTH_SHORT).show();
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobIM.connect(user.getObjectId(), new ConnectListener() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    Log.i(TAG, "done: 链接聊天服务器成功");
+                }
+            }
+        });
         startActivity(new Intent(getContext(), MessageActivity.class));
         getActivity().finish();
     }

@@ -55,10 +55,14 @@ public class AppContext extends Application {
             BmobIM.registerDefaultMessageHandler(new SimilarMessageHandler());
         }
 
-        initTencent();
+//        initTencent();
 
     }
 
+
+    /**
+     * 不再使用腾讯IM
+     */
     private void initTencent() {
         TIMManager.getInstance();
         //初始化 SDK 基本配置

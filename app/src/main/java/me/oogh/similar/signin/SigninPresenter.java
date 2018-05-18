@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -36,6 +37,7 @@ public class SigninPresenter implements SigninContract.Presenter {
         @Override
         protected void doComplete(JSONObject values) {
             initOpenidAndToken(values);
+            Log.i(TAG, "doComplete: "+values);
         }
     };
 

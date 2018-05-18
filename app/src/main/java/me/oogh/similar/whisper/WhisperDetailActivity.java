@@ -1,5 +1,6 @@
 package me.oogh.similar.whisper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -125,14 +127,24 @@ public class WhisperDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_whisper_content_chat) {
-            // TODO: 跳转到聊天页面
-            Toast.makeText(this, "跳转到聊天页面", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, WhisperChatActivity.class);
+            intent.putExtra("objectId", mWhisper.getObjectId());
+            startActivity(intent);
         }
         return true;
     }
 
+    @OnClick(R.id.btn_whisper_detail_title_2)
+    public void onTitleViewClicked(View view){
+        //TODO: 跳转到主题详情页面
+        startActivity(new Intent(this, WhisperTopicDetailActivity.class));
+
+        
+    }
+
     @OnClick(R.id.btn_send_comment)
     public void onViewClicked() {
+
         String comment = mCommentView.getText().toString();
         if (comment != null && comment.trim().length() > 0) {
             Comment cmt = new Comment(comment, mWhisper);
