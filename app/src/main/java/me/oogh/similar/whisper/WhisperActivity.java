@@ -2,6 +2,8 @@ package me.oogh.similar.whisper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -43,6 +45,7 @@ import me.oogh.similar.common.OnItemClickListener;
 import me.oogh.similar.data.entry.Event;
 import me.oogh.similar.data.entry.MyTopic;
 import me.oogh.similar.data.entry.User;
+import me.oogh.similar.data.entry.Whisper;
 import me.oogh.similar.message.MessageActivity;
 import me.oogh.similar.murmur.MurmurActivity;
 import me.oogh.similar.my.MyActivity;
@@ -75,6 +78,21 @@ public class WhisperActivity extends AppCompatActivity implements Actionable {
     private WhisperMyTopicRecycleAdapter mAdapter;
 
     private ActionMode mActionMode;
+
+    private Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+
+            Whisper whisper = (Whisper) message.obj;
+            whisper.delete(new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    Log.i("oogh", "删除成功");
+                }
+            });
+            return true;
+        }
+    });
 
 
     @Override
@@ -149,9 +167,24 @@ public class WhisperActivity extends AppCompatActivity implements Actionable {
                         }
                     }
                 });
+                BmobQuery<Whisper> query = new BmobQuery<>();
+                query.addWhereEqualTo("topic", topic.getObjectId());
+                query.findObjects(new FindListener<Whisper>() {
+                    @Override
+                    public void done(List<Whisper> list, BmobException e) {
+                        for (Whisper whisper : list) {
+                            Message msg = Message.obtain();
+                            msg.obj = whisper;
+                            mHandler.sendMessage(msg);
+                        }
+                    }
+                });
+
+
                 mDataSet.remove(selectedItems.keyAt(i));
             }
         }
+
         mAdapter.updateTopics(mDataSet);
         Toast.makeText(this, count + " 条数据已被删除", Toast.LENGTH_SHORT).show();
         mActionMode.finish();

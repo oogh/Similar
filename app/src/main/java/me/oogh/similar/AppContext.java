@@ -40,6 +40,8 @@ import me.oogh.similar.utils.ApplicationInfoUtils;
 public class AppContext extends Application {
     private static final String TAG = AppContext.class.getSimpleName();
 
+    public static int count = 0;
+
     @Override
     public void onCreate() {
         super.onCreate();

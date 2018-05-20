@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".whisper.WhisperTopicChatActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_whisper_topic_chat_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorSystemUI"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/tv_topic_chat_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="话题说"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_topic_chat_message_list"
+        android:layout_above="@id/rl_topic_chat_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rl_topic_chat_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_toLeftOf="@+id/btn_topic_chat_send_message"
+            android:id="@+id/et_topic_chat_message_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_topic_chat_send_message"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

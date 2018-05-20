@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <!-- <uses-permission android:name="android.permission.READ_LOGS" /> -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name=".AppContext"
@@ -160,7 +162,11 @@
             android:theme="@style/AppTheme.Colored" />
         <activity
             android:name=".whisper.WhisperChatActivity"
-            android:theme="@style/AppTheme.Colored"></activity>
+            android:theme="@style/AppTheme.Colored" />
+        <activity
+            android:name=".whisper.WhisperTopicChatActivity"
+            android:theme="@style/AppTheme.Colored" />
+        <activity android:name=".murmur.MurmurNotifyActivity"></activity>
     </application>
 
 </manifest>

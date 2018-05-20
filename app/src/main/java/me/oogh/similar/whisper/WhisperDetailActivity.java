@@ -136,8 +136,9 @@ public class WhisperDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_whisper_detail_title_2)
     public void onTitleViewClicked(View view){
-        //TODO: 跳转到主题详情页面
-        startActivity(new Intent(this, WhisperTopicDetailActivity.class));
+        Intent intent = new Intent(this, WhisperTopicChatActivity.class);
+        intent.putExtra("objectId", mWhisper.getTopic().getObjectId());
+        startActivity(intent);
 
         
     }

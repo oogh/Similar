@@ -1,13 +1,21 @@
 package me.oogh.similar.murmur;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,12 +35,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.bmob.v3.BmobUser;
+import me.oogh.similar.AppContext;
 import me.oogh.similar.R;
 import me.oogh.similar.adapter.MurmurViewPagerAdapter;
 import me.oogh.similar.data.entry.Event;
 import me.oogh.similar.data.entry.Murmur;
 import me.oogh.similar.data.entry.User;
 import me.oogh.similar.utils.ActivityUtils;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * @author oogh <oogh216@163.com>
@@ -92,16 +103,39 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_murmur_cached:
                 ActivityUtils.navigateToWithNoFinish(getActivity(), CacheMurmurActivity.class);
                 break;
+            case R.id.action_murmur_demo:
+                Log.i(TAG, "onOptionsItemSelected: 执行了。。。");
+                // 测试提醒功能使用
+                NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                PendingIntent pendingIntent3 = PendingIntent.getActivity(getContext(), 0,
+                        new Intent(getContext(), MurmurActivity.class), 0);
+
+                Notification notify3 = new Notification.Builder(getContext())
+                        .setSmallIcon(R.mipmap.ic_logo)
+                        .setTicker("TickerText:" + "您有新短消息，请注意查收！")
+                        .setContentTitle("Notification Title")
+                        .setContentText("This is the notification message")
+                        .setContentIntent(pendingIntent3).setNumber(1).build();
+                notify3.flags |= Notification.FLAG_AUTO_CANCEL;
+                manager.notify(1, notify3);
+
+                break;
             default:
                 break;
         }
         return true;
+    }
+
+    public PendingIntent getDefalutIntent(int flags){
+        PendingIntent pendingIntent= PendingIntent.getActivity(getContext(), 1, new Intent(), flags);
+        return pendingIntent;
     }
 
     @Nullable
@@ -143,10 +177,16 @@ public class MurmurFragment extends Fragment implements MurmurContract.View {
      *
      * @param radio
      */
+
+
     private void doOkClicked(RadioButton radio) {
         switch (radio.getId()) {
             case R.id.rb_dialog_today:
-                onAddClick(MURMUR_TYPE_TODAY);
+                if(AppContext.count++ < 1){
+                onAddClick(MURMUR_TYPE_TODAY);}
+                else{
+                    Toast.makeText(getContext(), "每日只能一条", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.rb_dialog_future:
                 onAddClick(MURMUR_TYPE_FUTURE);
